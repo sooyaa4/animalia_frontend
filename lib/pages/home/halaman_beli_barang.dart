@@ -67,6 +67,40 @@ class BuyProductPage extends StatelessWidget {
                   ),
                 ),
               ),
+              Container(
+                margin: EdgeInsets.only(
+                  left: 10,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/cart');
+                      },
+                      child: Image.asset(
+                        'assets/Cart_icon_white.png',
+                        width: 30,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/wishlist');
+                      },
+                      child: Image.asset(
+                        'assets/icon_wishlist_white.png',
+                        width: 60,
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

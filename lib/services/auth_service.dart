@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'dart:convert';
 
+import 'package:animalia_frontend/models/cart_model.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/user_model.dart';
@@ -63,6 +66,8 @@ class AuthService {
     print(response.body);
 
     if (response.statusCode == 200) {
+      String token = UserModel.fromJson(json.decode(response.body)).token;
+      UserModel().setToken(token);
       var data = jsonDecode(response.body)['data'];
       UserModel user = UserModel.fromJson(data['user']);
       user.token = 'Bearer ' + data['access_token'];

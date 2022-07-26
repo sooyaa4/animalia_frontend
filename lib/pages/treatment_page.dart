@@ -1,6 +1,5 @@
 import 'package:animalia_frontend/models/treatment_model.dart';
-import 'package:animalia_frontend/providers/cart_provider.dart';
-import 'package:animalia_frontend/providers/wishlist_provider.dart';
+import 'package:animalia_frontend/providers/cart_treatment_proivider.dart';
 import 'package:flutter/material.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:provider/provider.dart';
@@ -17,15 +16,16 @@ class _TreatmentPageState extends State<TreatmentPage> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    WishListProvider wishlistProvider = Provider.of<WishListProvider>(context);
-    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    // WishListProvider wishlistProvider = Provider.of<WishListProvider>(context);
+    CartTreatmentProvider cartTreatmentProvider =
+        Provider.of<CartTreatmentProvider>(context);
     Future<void> showSuccesDialog() async {
       return showDialog(
         context: context,
         builder: (BuildContext context) => Container(
           width: MediaQuery.of(context).size.width - (2 * defaultMargin),
           child: AlertDialog(
-            backgroundColor: backgroundColor3,
+            backgroundColor: backgroundColor2,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -61,7 +61,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                   ),
                   Text(
                     'items added succesfully',
-                    style: secondaryTextStyle,
+                    style: blackTextStyle,
                   ),
                   SizedBox(
                     height: 20,
@@ -71,7 +71,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     height: 44,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/cart');
+                        Navigator.pushNamed(context, '/cartt');
                       },
                       style: TextButton.styleFrom(
                         backgroundColor: primaryColor,
@@ -110,21 +110,21 @@ class _TreatmentPageState extends State<TreatmentPage> {
       );
     }
 
-    Widget familiarShoesCart(String imageurl) {
-      return Container(
-        width: 54,
-        height: 54,
-        margin: EdgeInsets.only(
-          right: 16,
-        ),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(imageurl),
-          ),
-          borderRadius: BorderRadius.circular(6),
-        ),
-      );
-    }
+    // Widget familiarShoesCart(String imageurl) {
+    //   return Container(
+    //     width: 54,
+    //     height: 54,
+    //     margin: EdgeInsets.only(
+    //       right: 16,
+    //     ),
+    //     decoration: BoxDecoration(
+    //       image: DecorationImage(
+    //         image: AssetImage(imageurl),
+    //       ),
+    //       borderRadius: BorderRadius.circular(6),
+    //     ),
+    //   );
+    // }
 
     Widget header() {
       int index = -1;
@@ -155,7 +155,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
             ),
           ),
           // CarouselSlider(
-          //   items: widget.product.galleries
+          //   items: widget.treatments
           //       .map(
           //         (image) => Image.network(
           //           image.url,
@@ -178,7 +178,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
           ),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: widget.product.galleries.map((e) {
+          //   children: widget.treatments.galleries.map((e) {
           //     index++;
           //     return indicator(index);
           //   }).toList(),
@@ -222,7 +222,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                           ),
                         ),
                         Text(
-                          widget.treatments.deskripsi,
+                          widget.treatments.nama_jasa,
                           style: secondaryTextStyle.copyWith(
                             fontSize: 13,
                           ),
@@ -257,7 +257,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                   //     }
                   //   },
                   //   child: Image.asset(
-                  //     wishlistProvider.isWishlist(widget.product)
+                  //     wishlistProvider.isWishlist(widget.treatments)
                   //         ? 'assets/icon_wishlist_white.png'
                   //         : 'assets/icon_wishlist.png',
                   //     width: 46,
@@ -285,7 +285,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     style: primaryTextStyle,
                   ),
                   Text(
-                    '\$${widget.treatments.harga}',
+                    '\Rp${widget.treatments.harga}',
                     style: priceTextStyle.copyWith(
                         fontSize: 16, fontWeight: semibold),
                   ),
@@ -363,20 +363,6 @@ class _TreatmentPageState extends State<TreatmentPage> {
               margin: EdgeInsets.all(defaultMargin),
               child: Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/detail-chat');
-                    },
-                    // child: Container(
-                    //   width: 54,
-                    //   height: 54,
-                    //   decoration: BoxDecoration(
-                    //     image: DecorationImage(
-                    //       image: AssetImage('assets/button_chat.png'),
-                    //     ),
-                    //   ),
-                    // ),
-                  ),
                   SizedBox(
                     width: 16,
                   ),
@@ -385,8 +371,8 @@ class _TreatmentPageState extends State<TreatmentPage> {
                       height: 54,
                       child: TextButton(
                         onPressed: () {
-                          // cartProvider.addCart(widget.product);
-                          // showSuccesDialog();
+                          cartTreatmentProvider.addCart(widget.treatments);
+                          showSuccesDialog();
                         },
                         style: TextButton.styleFrom(
                           primary: primaryColor,
@@ -396,7 +382,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                           backgroundColor: primaryColor,
                         ),
                         child: Text(
-                          'Add to cart',
+                          'Pesan Treatment',
                           style: primaryTextStyle.copyWith(
                             fontSize: 16,
                             fontWeight: semibold,

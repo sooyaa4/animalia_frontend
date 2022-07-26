@@ -1,11 +1,17 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
+import 'package:animalia_frontend/models/user_model.dart';
+import 'package:animalia_frontend/providers/auth_provider.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
     Widget header() {
       return AppBar(
         backgroundColor: backgroundColor1,
@@ -32,7 +38,7 @@ class ProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hello, a',
+                        'Hello, ${user.nama}',
                         style: primaryTextStyle.copyWith(
                           fontSize: 24,
                           fontWeight: semibold,
@@ -136,22 +142,6 @@ class ProfilePage extends StatelessWidget {
                 },
                 child: menuItem(
                   'Sewa Jasa',
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                'WishList',
-                style: primaryTextStyle.copyWith(
-                    fontWeight: semibold, fontSize: 16),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/wishlist');
-                },
-                child: menuItem(
-                  'Wish List',
                 ),
               ),
               SizedBox(

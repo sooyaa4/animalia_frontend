@@ -26,7 +26,7 @@ class _ProductPageState extends State<ProductPage> {
         builder: (BuildContext context) => Container(
           width: MediaQuery.of(context).size.width - (2 * defaultMargin),
           child: AlertDialog(
-            backgroundColor: backgroundColor3,
+            backgroundColor: backgroundColor2,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -62,7 +62,7 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   Text(
                     'items added succesfully',
-                    style: secondaryTextStyle,
+                    style: blackTextStyle,
                   ),
                   SizedBox(
                     height: 20,
@@ -148,42 +148,50 @@ class _ProductPageState extends State<ProductPage> {
                     Icons.chevron_left,
                   ),
                 ),
-                Icon(
-                  Icons.shopping_bag,
-                  color: backgroundColor1,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/cart');
+                  },
+                  child: Icon(
+                    Icons.shopping_bag,
+                    color: backgroundColor2,
+                  ),
                 ),
               ],
             ),
           ),
-          // CarouselSlider(
-          //   items: widget.product.galleries
-          //       .map(
-          //         (image) => Image.network(
-          //           image.url,
-          //           width: MediaQuery.of(context).size.width,
-          //           height: 310,
-          //           fit: BoxFit.cover,
-          //         ),
-          //       )
-          //       .toList(),
-          //   options: CarouselOptions(
-          //       initialPage: 0,
-          //       onPageChanged: (index, reason) {
-          //         setState(() {
-          //           currentIndex = index;
-          //         });
-          //       }),
+          // Image.asset(
+          //   'assets/whiskas.jpg',
+          //   width: MediaQuery.of(context).size.width,
+          //   height: 200,
+          //   fit: BoxFit.cover,
           // ),
-          SizedBox(
-            height: 20,
+          CarouselSlider(
+            items: widget.product.galeri
+                .map(
+                  (image) => Image.network(
+                    image.url,
+                    width: MediaQuery.of(context).size.width,
+                    height: 450,
+                    fit: BoxFit.cover,
+                  ),
+                )
+                .toList(),
+            options: CarouselOptions(
+                initialPage: 0,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                }),
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: widget.product.galleries.map((e) {
-          //     index++;
-          //     return indicator(index);
-          //   }).toList(),
-          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: widget.product.galeri.map((e) {
+              index++;
+              return indicator(index);
+            }).toList(),
+          ),
         ],
       );
     }
@@ -275,7 +283,7 @@ class _ProductPageState extends State<ProductPage> {
               ),
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: backgroundColor2,
+                color: backgroundColor1,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Row(
@@ -283,12 +291,14 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   Text(
                     'Price starts from',
-                    style: primaryTextStyle,
+                    style: hurufputih.copyWith(
+                      fontWeight: semibold,
+                    ),
                   ),
                   Text(
                     '\Rp${widget.product.harga}',
-                    style: priceTextStyle.copyWith(
-                        fontSize: 16, fontWeight: semibold),
+                    style:
+                        hurufputih.copyWith(fontSize: 16, fontWeight: semibold),
                   ),
                 ],
               ),
@@ -306,7 +316,7 @@ class _ProductPageState extends State<ProductPage> {
                   Text(
                     'Description',
                     style: primaryTextStyle.copyWith(
-                      fontWeight: medium,
+                      fontWeight: semibold,
                     ),
                   ),
                   SizedBox(
@@ -319,6 +329,24 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                     textAlign: TextAlign.justify,
                   ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Berat barang',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: semibold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Text(
+                    widget.product.berat + ' gram',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: light,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -327,60 +355,12 @@ class _ProductPageState extends State<ProductPage> {
               margin: EdgeInsets.only(
                 top: defaultMargin,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: defaultMargin,
-                    ),
-                    child: Text(
-                      'Familiar product',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  // SingleChildScrollView(
-                  //   scrollDirection: Axis.horizontal,
-                  //   child: Row(
-                  //     children: familiarShoes.map((image) {
-                  //       index++;
-                  //       return Container(
-                  //           margin: EdgeInsets.only(
-                  //               left: index == 0 ? defaultMargin : 0),
-                  //           child: familiarShoesCart(image));
-                  //     }).toList(),
-                  //   ),
-                  // ),
-                ],
-              ),
             ),
             Container(
               width: double.infinity,
               margin: EdgeInsets.all(defaultMargin),
               child: Row(
                 children: [
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     Navigator.pushNamed(context, '/detail-chat');
-                  //   },
-                  //   child: Container(
-                  //     width: 54,
-                  //     height: 54,
-                  //     decoration: BoxDecoration(
-                  //       image: DecorationImage(
-                  //         image: AssetImage('assets/button_chat.png'),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  SizedBox(
-                    width: 16,
-                  ),
                   Expanded(
                     child: Container(
                       height: 54,

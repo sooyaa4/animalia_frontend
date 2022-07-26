@@ -54,7 +54,7 @@ class WishListPage extends StatelessWidget {
               ),
               Text(
                 'Let\'s find your favorite product',
-                style: primaryTextStyle,
+                style: primaryTextStyle.copyWith(fontSize: 12),
               ),
               SizedBox(
                 height: 20,

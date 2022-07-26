@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print
 
 import 'package:animalia_frontend/models/category_model.dart';
+import 'package:animalia_frontend/models/gallery_model.dart';
 
 class ProductBarangModel {
   int id;
@@ -14,6 +15,7 @@ class ProductBarangModel {
   DateTime createdAt;
   DateTime updateAt;
   DateTime deleteAt;
+  List<GalleryModel> galeri;
 
   ProductBarangModel({
     this.id,
@@ -27,6 +29,7 @@ class ProductBarangModel {
     this.createdAt,
     this.updateAt,
     this.deleteAt,
+    this.galeri,
   });
 
   ProductBarangModel.fromJson(Map<String, dynamic> json) {
@@ -49,6 +52,9 @@ class ProductBarangModel {
     deleteAt = json['deleted_at'] == null
         ? null
         : DateTime.parse(json['deleted_at'] as String);
+    galeri = json['galeri']
+        .map<GalleryModel>((galeri) => GalleryModel.fromJson(galeri))
+        .toList();
   }
   Map<String, dynamic> toJson() {
     return {
@@ -62,6 +68,7 @@ class ProductBarangModel {
       'createdAt': createdAt.toString(),
       'updateAt': updateAt.toString(),
       'deleteAt': deleteAt.toString(),
+      'galeri': galeri.map((galeri) => galeri.toJson()).toList(),
     };
   }
 }

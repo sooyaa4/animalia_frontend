@@ -33,7 +33,7 @@ class WishlistCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
               // product.galleries[0].url,
-              'assets/animalia.png',
+              'assets/whiskas.jpg',
               width: 60,
             ),
           ),
@@ -47,11 +47,11 @@ class WishlistCard extends StatelessWidget {
                 Text(
                   product.nama_barang,
                   style: primaryTextStyle.copyWith(
-                      fontWeight: semibold, fontSize: 22),
+                      fontWeight: semibold, fontSize: 15),
                 ),
                 Text(
                   '\Rp${product.harga}',
-                  style: primaryTextStyle.copyWith(fontSize: 22),
+                  style: primaryTextStyle.copyWith(fontSize: 15),
                 ),
               ],
             ),

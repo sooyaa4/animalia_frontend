@@ -28,8 +28,8 @@ class CheckoutCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
-                image: AssetImage(
-                  'assets/animalia.png',
+                image: NetworkImage(
+                  cart.product.galeri[0].url,
                 ),
               ),
             ),
@@ -52,7 +52,7 @@ class CheckoutCard extends StatelessWidget {
                   height: 2,
                 ),
                 Text(
-                  '\$${cart.product.harga}',
+                  '\Rp${cart.product.harga}',
                   style: priceTextStyle,
                 ),
               ],

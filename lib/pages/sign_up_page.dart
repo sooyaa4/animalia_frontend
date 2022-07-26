@@ -357,24 +357,26 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return Scaffold(
       backgroundColor: backgroundColor2,
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: defaultMargin,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              header(),
-              namaInput(),
-              usernameInput(),
-              emailInput(),
-              passwordInput(),
-              isLoading ? LoadingButton() : signUpButton(),
-              Spacer(),
-              footer(),
-            ],
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: defaultMargin,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                header(),
+                namaInput(),
+                usernameInput(),
+                emailInput(),
+                passwordInput(),
+                isLoading ? LoadingButton() : signUpButton(),
+                // Spacer(),
+                footer(),
+              ],
+            ),
           ),
         ),
       ),

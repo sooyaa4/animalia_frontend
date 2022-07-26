@@ -18,7 +18,7 @@ class PelangganModel {
   PelangganModel.fromJson(Map<String, dynamic> json) {
     print('FROM JSON: $json');
     print('id: ${json['id']}');
-    print('id: ${json['nama']}');
+    // print('id: ${json['nama']}');
     id = json['id'];
     nama = json['nama'];
     username = json['username'];

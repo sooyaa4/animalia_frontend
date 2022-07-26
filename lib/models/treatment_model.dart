@@ -22,11 +22,11 @@ class TreatmentModel {
   });
 
   TreatmentModel.fromJson(Map<String, dynamic> json) {
-    print('FROM JSON: $json');
-    print('id: ${json['id']}');
-    print('nama: ${json['nama_jasa']}');
-    print('desk: ${json['deskripsi']}');
-    print('harga: ${json['harga']}');
+    // print('FROM JSON: $json');
+    // print('id: ${json['id']}');
+    // print('nama: ${json['nama_jasa']}');
+    // print('desk: ${json['deskripsi']}');
+    // print('harga: ${json['harga']}');
 
     id = json['id'];
     nama_jasa = json['nama_jasa'];

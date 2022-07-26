@@ -11,7 +11,10 @@ class CartPage extends StatelessWidget {
     Widget header() {
       return AppBar(
         leading: IconButton(
-          icon: Icon(Icons.close),
+          icon: Icon(
+            Icons.close,
+            color: Colors.black,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -39,8 +42,8 @@ class CartPage extends StatelessWidget {
               height: 20,
             ),
             Text(
-              'Opss! Your Cart is Empty',
-              style: primaryTextStyle.copyWith(
+              'Opss! Keranjang masih kosong nih',
+              style: hurufputih.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
               ),
@@ -49,8 +52,8 @@ class CartPage extends StatelessWidget {
               height: 12,
             ),
             Text(
-              'Let\'s Find your favorite product',
-              style: primaryTextStyle,
+              'Coba temuin produk untuk hewan mu',
+              style: hurufputih,
             ),
             Container(
               width: 154,
@@ -64,13 +67,13 @@ class CartPage extends StatelessWidget {
                       context, '/home', (route) => false);
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: primaryColor,
+                  backgroundColor: backgroundColor2,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 child: Text(
-                  'Explore store',
+                  'Explore Produk',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
                   ),

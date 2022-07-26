@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         Provider.of<TreatmentProvider>(context);
 
     // print('jumlah produk homepage: ${productBarangProvider.products.length}');
-    print('jumlah treatment homepage: ${treatmentProvider.treatments.length}');
+    // print('jumlah treatment homepage: ${treatmentProvider.treatments.length}');
 
     Widget header() {
       return Container(
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Welcome',
+                    'Animalia',
                     style: primaryTextStyle.copyWith(
                       fontSize: 24,
                       fontWeight: semibold,
@@ -57,9 +57,11 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage(
-                    'assets/image_profile.png',
-                  ),
+                  // image: AssetImage(
+                  //   'assets/image_profile.png',
+                  // ),
+                  image: NetworkImage(
+                      'https://ui-avatars.com/api/${{user.email}}'),
                 ),
               ),
             ),
@@ -67,126 +69,6 @@ class HomePage extends StatelessWidget {
         ),
       );
     }
-
-    // Widget categories() {
-    //   return Container(
-    //     margin: EdgeInsets.only(
-    //       top: defaultMargin,
-    //     ),
-    //     child: SingleChildScrollView(
-    //       scrollDirection: Axis.horizontal,
-    //       child: Row(
-    //         children: [
-    //           SizedBox(
-    //             width: defaultMargin,
-    //           ),
-    //           Container(
-    //             padding: EdgeInsets.symmetric(
-    //               horizontal: 12,
-    //               vertical: 10,
-    //             ),
-    //             margin: EdgeInsets.only(right: 16),
-    //             decoration: BoxDecoration(
-    //               borderRadius: BorderRadius.circular(12),
-    //               color: primaryColor,
-    //             ),
-    //             child: Text(
-    //               'All size',
-    //               style: primaryTextStyle.copyWith(
-    //                 fontSize: 13,
-    //                 fontWeight: medium,
-    //               ),
-    //             ),
-    //           ),
-    //           Container(
-    //             padding: EdgeInsets.symmetric(
-    //               horizontal: 12,
-    //               vertical: 10,
-    //             ),
-    //             margin: EdgeInsets.only(right: 16),
-    //             decoration: BoxDecoration(
-    //               borderRadius: BorderRadius.circular(12),
-    //               border: Border.all(
-    //                 color: subtitleColor,
-    //               ),
-    //               color: transparentColor,
-    //             ),
-    //             child: Text(
-    //               'Running',
-    //               style: subtitleTextStyle.copyWith(
-    //                 fontSize: 13,
-    //                 fontWeight: medium,
-    //               ),
-    //             ),
-    //           ),
-    //           Container(
-    //             padding: EdgeInsets.symmetric(
-    //               horizontal: 12,
-    //               vertical: 10,
-    //             ),
-    //             margin: EdgeInsets.only(right: 16),
-    //             decoration: BoxDecoration(
-    //               borderRadius: BorderRadius.circular(12),
-    //               border: Border.all(
-    //                 color: subtitleColor,
-    //               ),
-    //               color: transparentColor,
-    //             ),
-    //             child: Text(
-    //               'Training',
-    //               style: subtitleTextStyle.copyWith(
-    //                 fontSize: 13,
-    //                 fontWeight: medium,
-    //               ),
-    //             ),
-    //           ),
-    //           Container(
-    //             padding: EdgeInsets.symmetric(
-    //               horizontal: 12,
-    //               vertical: 10,
-    //             ),
-    //             margin: EdgeInsets.only(right: 16),
-    //             decoration: BoxDecoration(
-    //               borderRadius: BorderRadius.circular(12),
-    //               border: Border.all(
-    //                 color: subtitleColor,
-    //               ),
-    //               color: transparentColor,
-    //             ),
-    //             child: Text(
-    //               'Basket Ball',
-    //               style: subtitleTextStyle.copyWith(
-    //                 fontSize: 13,
-    //                 fontWeight: medium,
-    //               ),
-    //             ),
-    //           ),
-    //           Container(
-    //             padding: EdgeInsets.symmetric(
-    //               horizontal: 12,
-    //               vertical: 10,
-    //             ),
-    //             margin: EdgeInsets.only(right: 16),
-    //             decoration: BoxDecoration(
-    //               borderRadius: BorderRadius.circular(12),
-    //               border: Border.all(
-    //                 color: subtitleColor,
-    //               ),
-    //               color: transparentColor,
-    //             ),
-    //             child: Text(
-    //               'Hiking',
-    //               style: subtitleTextStyle.copyWith(
-    //                 fontSize: 13,
-    //                 fontWeight: medium,
-    //               ),
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     ),
-    //   );
-    // }
 
     Widget popularProductTitle() {
       return Container(
@@ -276,7 +158,6 @@ class HomePage extends StatelessWidget {
         popularProduct(),
         treatmentTitle(),
         treatmentCard(),
-        Spacer(),
       ],
     );
   }

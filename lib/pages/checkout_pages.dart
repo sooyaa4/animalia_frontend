@@ -6,18 +6,27 @@ import 'package:animalia_frontend/widgets/checkout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CheckoutPage extends StatelessWidget {
+class CheckoutPage extends StatefulWidget {
+  @override
+  State<CheckoutPage> createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<CheckoutPage> {
+  TextEditingController alamatController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
-    TransaksiBarangprovider transactionProvider =
+    TransaksiBarangprovider transaksiBarangprovider =
         Provider.of<TransaksiBarangprovider>(context);
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     handleCheckout() async {
-      if (await transactionProvider.checkout(
+      if (await transaksiBarangprovider.checkout(
         authProvider.user.token,
         cartProvider.carts,
         cartProvider.totalPrice(),
+        cartProvider.subTotal(),
+        cartProvider.alamat = alamatController.text,
       )) {
         cartProvider.carts = [];
         Navigator.pushNamedAndRemoveUntil(
@@ -78,7 +87,7 @@ class CheckoutPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Address Details',
+                  'Alamat Pengiriman',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -112,30 +121,183 @@ class CheckoutPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Store Location',
+                          'Alamat Toko',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                             fontWeight: light,
                           ),
                         ),
                         Text(
-                          'Adidas Core',
+                          'Keputih perintis 1 no 18',
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
                         ),
                         SizedBox(
-                          height: defaultMargin,
+                          height: 10,
                         ),
                         Text(
-                          'Your Address',
+                          'Alamat pengiriman',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 12,
+                              ),
+                              Container(
+                                height: 45,
+                                width: 230,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: backgroundColor2,
+                                  borderRadius: BorderRadius.circular(12),
+                                  // border: Border.all(
+                                  //   color: primaryColor,
+                                  // ),
+                                ),
+                                child: Center(
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Expanded(
+                                        child: TextFormField(
+                                          style: primaryTextStyle,
+                                          controller: alamatController,
+                                          decoration: InputDecoration.collapsed(
+                                            hintText: 'Alamat anda',
+                                            hintStyle: primaryTextStyle,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: defaultMargin,
+            ),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: backgroundColor2,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Pilih metode pembayaran',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Tipe pembayaran',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                             fontWeight: light,
                           ),
                         ),
                         Text(
-                          'Marsemoon',
+                          'BCA',
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              top: defaultMargin,
+            ),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: backgroundColor2,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Pemilihan kurir',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Pilihan Kurir',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Text(
+                          'JNE',
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -193,7 +355,7 @@ class CheckoutPage extends StatelessWidget {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      '\$${cartProvider.totalPrice()}',
+                      '\Rp${cartProvider.totalPrice()}',
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -232,7 +394,7 @@ class CheckoutPage extends StatelessWidget {
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                     Text(
-                      '\$${cartProvider.totalPrice()}',
+                      '\Rp${cartProvider.totalPrice()}',
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                   ],
@@ -256,7 +418,7 @@ class CheckoutPage extends StatelessWidget {
             child: TextButton(
               onPressed: handleCheckout,
               style: TextButton.styleFrom(
-                backgroundColor: primaryColor,
+                backgroundColor: backgroundColor2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),

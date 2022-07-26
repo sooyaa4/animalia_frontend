@@ -1,4 +1,6 @@
+import 'package:animalia_frontend/pages/cartTreatmentPage.dart';
 import 'package:animalia_frontend/pages/cart_pages.dart';
+import 'package:animalia_frontend/pages/checkout_page_treatment.dart';
 import 'package:animalia_frontend/pages/checkout_pages.dart';
 import 'package:animalia_frontend/pages/checkout_success.dart';
 import 'package:animalia_frontend/pages/edit_password.dart';
@@ -12,8 +14,12 @@ import 'package:animalia_frontend/pages/splash_page.dart';
 import 'package:animalia_frontend/pages/treatment.dart';
 import 'package:animalia_frontend/providers/auth_provider.dart';
 import 'package:animalia_frontend/providers/cart_provider.dart';
+import 'package:animalia_frontend/providers/cart_treatment_proivider.dart';
+import 'package:animalia_frontend/providers/histori_transaksi_barang.dart';
+import 'package:animalia_frontend/providers/histori_transaksi_treatment.dart';
 import 'package:animalia_frontend/providers/product_barang_provider.dart';
 import 'package:animalia_frontend/providers/transaksi_barang_provider.dart';
+import 'package:animalia_frontend/providers/transaksi_treatment.dart';
 import 'package:animalia_frontend/providers/treatment_provider.dart';
 import 'package:animalia_frontend/providers/wishlist_provider.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +50,19 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TreatmentProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartTreatmentProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TransaksiTreatmentProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HistoriBarangProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HistoriTreatmentProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -56,10 +74,12 @@ class MyApp extends StatelessWidget {
           '/edit-profile': (contex) => EditProfilePage(),
           '/edit-password': (contex) => EditPasswordPage(),
           '/histori-beli': (contex) => PembelianPage(),
-          '/histori-treatment': (contex) => TreatmentPage(),
+          '/histori-treatment': (contex) => HistoriTreatmentPage(),
           '/cart': (contex) => CartPage(),
+          '/cartt': (context) => CartTreatmentPage(),
           '/wishlist': (context) => WishListPage(),
           '/checkout': (contex) => CheckoutPage(),
+          '/checkouttreatment': (contex) => CheckoutTreatmentPage(),
           '/checkout-success': (contex) => CheckoutSuccessPage(),
         },
       ),

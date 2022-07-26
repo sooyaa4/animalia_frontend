@@ -26,18 +26,18 @@ class CheckoutSuccessPage extends StatelessWidget {
               height: 20,
             ),
             Text(
-              'You made a transaction',
+              'Transaksi anda akan di proses',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
-                fontWeight: medium,
+                fontWeight: semibold,
               ),
             ),
             SizedBox(
               height: 12,
             ),
             Text(
-              'Stay at home while we\n prepare your dream shoes',
-              style: secondaryTextStyle,
+              'Terimakasih sudah mempercayai pet shop animalia!',
+              style: primaryTextStyle,
               textAlign: TextAlign.center,
             ),
             Container(
@@ -47,7 +47,9 @@ class CheckoutSuccessPage extends StatelessWidget {
                 top: defaultMargin,
               ),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/home');
+                },
                 style: TextButton.styleFrom(
                   backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
@@ -55,7 +57,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Order other shoes',
+                  'Kembali ke home',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -96,7 +98,7 @@ class CheckoutSuccessPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor3,
+      backgroundColor: backgroundColor2,
       appBar: header(),
       body: content(),
     );

@@ -35,8 +35,8 @@ class CartCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                    image: AssetImage(
-                      'assets/animalia.png',
+                    image: NetworkImage(
+                      cart.product.galeri[0].url,
                     ),
                   ),
                 ),

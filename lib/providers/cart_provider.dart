@@ -1,11 +1,11 @@
 import 'package:animalia_frontend/models/cart_model.dart';
 import 'package:animalia_frontend/models/product_barang_model.dart';
-import 'package:animalia_frontend/providers/product_barang_provider.dart';
 import 'package:flutter/material.dart';
 
 class CartProvider with ChangeNotifier {
   List<CartModel> _carts = [];
   List<CartModel> get carts => _carts;
+  String alamat;
 
   set carts(List<CartModel> carts) {
     _carts = carts;
@@ -70,5 +70,11 @@ class CartProvider with ChangeNotifier {
     } else {
       return true;
     }
+  }
+
+  subTotal() {
+    double subtotal = 0;
+    subtotal += (totalPrice() + 10000);
+    return subtotal;
   }
 }

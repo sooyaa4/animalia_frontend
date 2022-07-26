@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:animalia_frontend/models/pelanggan_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserModel {
   int id;
@@ -19,6 +22,8 @@ class UserModel {
 
   UserModel.fromJson(Map<String, dynamic> json) {
     print('id: ${json['id']}');
+    print('token: ${json['token']}');
+    //print('pelanggan : ${json['pelanggan']}');
 
     id = json['id'];
     email = json['email'];
@@ -37,5 +42,15 @@ class UserModel {
       'token': token,
       // 'pelanggan': pelanggan.toJson(),
     };
+  }
+
+  Future<bool> setToken(String token) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString('token', token);
+  }
+
+  Future<String> getToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('token');
   }
 }

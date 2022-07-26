@@ -1,9 +1,8 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:animalia_frontend/models/treatment_model.dart';
-import 'package:animalia_frontend/pages/home/halaman_treatment.dart';
+import 'package:animalia_frontend/pages/treatment_page.dart';
 import 'package:animalia_frontend/theme.dart';
-import 'package:animalia_frontend/widgets/treatment_card.dart';
 import 'package:flutter/material.dart';
 
 class TreatmentTile extends StatelessWidget {
@@ -17,7 +16,7 @@ class TreatmentTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TreatmentCard(treatments),
+            builder: (context) => TreatmentPage(treatments),
           ),
         );
       },
@@ -39,7 +38,7 @@ class TreatmentTile extends StatelessWidget {
                   //   fit: BoxFit.cover,
                   // ),
                   Image.asset(
-                'assets/image_shoes.png',
+                'assets/treatment.png',
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
@@ -53,14 +52,14 @@ class TreatmentTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    treatments.nama_jasa,
-                    style: secondaryTextStyle.copyWith(fontSize: 12),
+                    '\Rp.${treatments.harga}',
+                    style: priceTextStyle.copyWith(fontSize: 12),
                   ),
                   SizedBox(
                     height: 6,
                   ),
                   Text(
-                    treatments.deskripsi,
+                    treatments.nama_jasa,
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semibold,
@@ -71,7 +70,7 @@ class TreatmentTile extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    '\$${treatments.deskripsi}',
+                    treatments.deskripsi,
                     style: priceTextStyle.copyWith(fontWeight: medium),
                   )
                 ],

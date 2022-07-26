@@ -1,0 +1,90 @@
+import 'package:animalia_frontend/models/histori_treatment.dart';
+import 'package:animalia_frontend/providers/histori_transaksi_treatment.dart';
+import 'package:animalia_frontend/theme.dart';
+import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
+class HistoriTreatmentCard extends StatelessWidget {
+  final HistoriTreatmentModel treats;
+  HistoriTreatmentCard(this.treats);
+  @override
+  Widget build(BuildContext context) {
+    HistoriTreatmentProvider historiTreatmentProvider =
+        Provider.of<HistoriTreatmentProvider>(context);
+    return Container(
+      margin: EdgeInsets.only(
+        top: defaultMargin,
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 10,
+      ),
+      decoration: BoxDecoration(
+        color: backgroundColor2,
+        borderRadius: BorderRadius.circular(
+          12,
+        ),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/animalia.png',
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 12,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      treats.status,
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: semibold,
+                      ),
+                    ),
+                    Text(
+                      '\Rp.${treats.total_harga}',
+                      style: primaryTextStyle,
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    height: 2,
+                  ),
+                  Text(
+                    treats.alamat,
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: medium,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 12,
+          ),
+        ],
+      ),
+    );
+  }
+}

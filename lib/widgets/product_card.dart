@@ -26,7 +26,7 @@ class ProductCard extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Color(0xffECEDEF),
+          color: Colors.white,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,18 +34,18 @@ class ProductCard extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            // Image.network(
-            //   product.galleries[0].url,
-            //   width: 225,
-            //   height: 150,
-            //   fit: BoxFit.cover,
-            // ),
-            Image.asset(
-              'assets/animalia.png',
+            Image.network(
+              product.galeri[0].url,
               width: 225,
               height: 150,
               fit: BoxFit.cover,
             ),
+            // Image.asset(
+            //   'assets/whiskas.jpg',
+            //   width: 225,
+            //   height: 150,
+            //   fit: BoxFit.cover,
+            // ),
             Container(
               margin: EdgeInsets.symmetric(
                 horizontal: 20,

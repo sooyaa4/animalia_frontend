@@ -25,7 +25,7 @@ class EditProfilePage extends StatelessWidget {
             onPressed: () {},
             icon: Icon(
               Icons.check,
-              color: primaryColor,
+              color: Colors.white,
             ),
           ),
         ],
