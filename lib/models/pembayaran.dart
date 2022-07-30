@@ -16,9 +16,11 @@ class PembayaranModel {
   });
 
   PembayaranModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    status = json['status'];
-    createdAt = json['createdAt'];
+    print('FROM JSON: $json');
+    print('id bayar: ${json['id']}');
+    id = json['id'].toInt();
+    status = json['status'].toString();
+    createdAt = DateTime.parse(json['created_at'] as String);
     metodbayar = MetodeBayarModel.fromJson(json['metodbayar']);
   }
   Map<String, dynamic> toJson() {

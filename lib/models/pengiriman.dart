@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:ffi';
+
 import 'package:animalia_frontend/models/metode_kirim.dart';
 
 class PengirimanModel {
@@ -20,11 +22,17 @@ class PengirimanModel {
   });
 
   PengirimanModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    status = json['status'];
-    tanggalKirim = json['tanggalKirim'];
-    tanggalTerima = json['tanggalTerima'];
-    noresi = json['noresi'];
+    print('FROM JSON: $json');
+    print('id kirim: ${json['id']}');
+    id = json['id'].toInt();
+    status = json['status'].toString();
+    tanggalKirim = json['tanggal_kirim'] == null
+        ? null
+        : DateTime.parse(json['tanggal_kirim'] as String);
+    tanggalTerima = json['tanggal_terima'] == null
+        ? null
+        : DateTime.parse(json['tanggal_terima'] as String);
+    noresi = json['noresi'].toString();
     metodkirim = MetodKirimModel.fromJson(json['metodkirim']);
   }
   Map<String, dynamic> toJson() {

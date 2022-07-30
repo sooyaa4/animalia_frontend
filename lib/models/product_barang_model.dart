@@ -33,12 +33,6 @@ class ProductBarangModel {
   });
 
   ProductBarangModel.fromJson(Map<String, dynamic> json) {
-    // print('FROM JSON: $json');
-    // print('id: ${json['id']}');
-    // print('nama: ${json['nama_barang']}');
-    // print('desk: ${json['deskripsi_barang']}');
-    // print('harga: ${json['harga']}');
-
     id = json['id'];
     nama_barang = json['nama_barang'];
     merk_barang = json['merk_barang'];

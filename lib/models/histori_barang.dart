@@ -12,10 +12,9 @@ class HistoryBarangModel {
   String status;
   String user_id;
   DateTime tanggal_pembelian;
-  // DetailTransaksiBarangModel detailbarang;
   List<DetailTransaksiBarangModel> detailbarang;
-  // PembayaranModel pembayaran;
-  // PengirimanModel pengiriman;
+  List<PembayaranModel> pembayaran;
+  List<PengirimanModel> pengiriman;
 
   HistoryBarangModel({
     this.id,
@@ -25,15 +24,14 @@ class HistoryBarangModel {
     this.user_id,
     this.tanggal_pembelian,
     this.detailbarang,
-    // this.pembayaran,
-    // this.pengiriman,
+    this.pembayaran,
+    this.pengiriman,
   });
 
   HistoryBarangModel.fromJson(Map<String, dynamic> json) {
-    // print('FROM JSON: $json');
-    // print('id: ${json['id']}');
-    // print('id: ${json['pembayaran']}');
-    id = json['id'];
+    print('FROM JSON: $json');
+    print('id: ${json['id']}');
+    id = json['id'].toInt();
     alamat = json['alamat'].toString();
     status = json['status'].toString();
     user_id = json['email'].toString();
@@ -43,6 +41,15 @@ class HistoryBarangModel {
         .map<DetailTransaksiBarangModel>(
             (detailbarang) => DetailTransaksiBarangModel.fromJson(detailbarang))
         .toList();
+    pembayaran = json['pembayaran']
+        .map<PembayaranModel>(
+            (pembayaran) => PembayaranModel.fromJson(pembayaran))
+        .toList();
+    pengiriman = json['pengiriman']
+        .map<PengirimanModel>(
+            (pengiriman) => PengirimanModel.fromJson(pengiriman))
+        .toList();
+    // detailbarang = DetailTransaksiBarangModel.fromJson(json['detailbarang']);
     // pembayaran = PembayaranModel.fromJson(json['pembayaran']);
     // pengiriman = PengirimanModel.fromJson(json['pengiriman']);
   }
@@ -54,11 +61,12 @@ class HistoryBarangModel {
       'user_id': user_id,
       'total_harga': total_harga,
       'tanggal_pembelian': tanggal_pembelian,
-      // 'detailbarang': detailbarang.toJson(),
       'detailbarang':
           detailbarang.map((detailbarang) => detailbarang.toJson()).toList(),
-      // 'pembayaran': pembayaran.toJson(),
-      // 'pengiriman': pengiriman.toJson(),
+      'pembayaran':
+          pembayaran.map((pembayaran) => pembayaran.toJson()).toList(),
+      'pengiriman':
+          pengiriman.map((pengiriman) => pengiriman.toJson()).toList(),
     };
   }
 }
