@@ -314,7 +314,7 @@ class _ProductPageState extends State<ProductPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Description',
+                    'Deskripsi',
                     style: primaryTextStyle.copyWith(
                       fontWeight: semibold,
                     ),
@@ -342,7 +342,9 @@ class _ProductPageState extends State<ProductPage> {
                     width: 12,
                   ),
                   Text(
-                    widget.product.berat + ' gram',
+                    widget.product.berat.toString() +
+                        '' +
+                        widget.product.satuan,
                     style: primaryTextStyle.copyWith(
                       fontWeight: light,
                     ),

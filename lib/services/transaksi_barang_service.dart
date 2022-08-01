@@ -12,6 +12,7 @@ class TransaksiBarangService {
     List<CartModel> carts,
     double totalPrice,
     double subTotal,
+    String tanggalPembelian,
     String alamat,
   ) async {
     var url = Uri.parse('$baseUrl/cobarang');
@@ -35,7 +36,7 @@ class TransaksiBarangService {
         "subtotal": subTotal,
         "metode_id": 1,
         "jenisKirim_id": 1,
-        "tanggal_pembelian": "2022-07-21",
+        "tanggal_pembelian": tanggalPembelian,
         "url": "aaaq.png",
       },
     );

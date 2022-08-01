@@ -1,6 +1,7 @@
 import 'package:animalia_frontend/models/histori_barang.dart';
 import 'package:animalia_frontend/providers/histori_transaksi_barang.dart';
 import 'package:animalia_frontend/theme.dart';
+import 'package:animalia_frontend/widgets/detailproduk_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,14 +46,33 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                       fontSize: 16, fontWeight: medium),
                 ),
                 // Column(
-                //   children: widget.trans.detailbarang[0].produk[0].galeri
-                //       .map(
-                //         (detail) => Image.network(
-                //           detail.url[0],
-                //           width: MediaQuery.of(context).size.width,
-                //           height: 450,
-                //           fit: BoxFit.cover,
+                //   children: [
+                //     Container(
+                //       margin: EdgeInsets.only(top: 14),
+                //       child: SingleChildScrollView(
+                //         scrollDirection: Axis.horizontal,
+                //         child: Row(
+                //           children: [
+                //             SizedBox(
+                //               width: defaultMargin,
+                //             ),
+                //             Row(
+                //               children: widget.trans.detailbarang
+                //                   .map(
+                //                     (tr) => DetailProductCard(tr),
+                //                   )
+                //                   .toList(),
+                //             ),
+                //           ],
                 //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // Column(
+                //   children: widget.trans.detailbarang
+                //       .map(
+                //         (tr) => DetailProductCard(tr),
                 //       )
                 //       .toList(),
                 // ),
@@ -171,10 +191,26 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                           'assets/icon_store_location.png',
                           width: 40,
                         ),
+                        Image.asset(
+                          'assets/icon_line.png',
+                          height: 30,
+                        ),
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/icon_line.png',
+                          height: 30,
+                        ),
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
                       ],
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 10,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -277,7 +313,21 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                           ),
                         ),
                         Text(
-                          widget.trans.pengiriman[0].id.toString(),
+                          widget
+                              .trans.pengiriman[0].metodkirim.nama_jenis_kirim,
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        ),
+                        Text(
+                          'Nomer Resi ',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Text(
+                          widget.trans.pengiriman[0].noresi,
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -302,7 +352,7 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Payment Sumary ',
+                  'Detail Pembayaran',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -315,11 +365,11 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Product Quantity',
+                      'Total Harga Barang',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      'a',
+                      widget.trans.total_harga.toString(),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -331,11 +381,11 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Product Price',
+                      'Tanggal Transaksi',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      '\Rp10',
+                      widget.trans.tanggal_pembelian.toLocal().toString(),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -347,11 +397,11 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Shipping',
+                      'Ongkos Kirim',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      'free',
+                      widget.trans.pengiriman[0].metodkirim.ongkir.toString(),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -374,7 +424,7 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                     Text(
-                      '\Rp ${widget.trans.detailbarang[0].subtotal}',
+                      '\Rp ${widget.trans.subtotal}',
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                   ],
@@ -403,7 +453,7 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                 ),
               ),
               child: Text(
-                'Checkout Now',
+                'Selesai',
                 style: primaryTextStyle.copyWith(
                   fontWeight: semibold,
                   fontSize: 16,

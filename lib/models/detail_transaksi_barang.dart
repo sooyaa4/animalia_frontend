@@ -5,13 +5,12 @@ import 'package:animalia_frontend/models/product_barang_model.dart';
 class DetailTransaksiBarangModel {
   int id;
   int jumlah_pesan;
-  double subtotal;
-  // List<ProductBarangModel> produk;
+  List<ProductBarangModel> produk;
+  //ProductBarangModel produk;
   DetailTransaksiBarangModel({
     this.id,
     this.jumlah_pesan,
-    this.subtotal,
-    // this.produk,
+    this.produk,
   });
 
   DetailTransaksiBarangModel.fromJson(Map<String, dynamic> json) {
@@ -19,19 +18,19 @@ class DetailTransaksiBarangModel {
     print('id detail: $id');
     id = json['id'].toInt();
     jumlah_pesan = json['jumlah_pesan'].toInt();
-    subtotal = double.parse(json['subtotal'].toString());
-    // produk = json['produk']
-    //     .map<ProductBarangModel>(
-    //         (produk) => ProductBarangModel.fromJson(produk))
-    //     .toList();
+    produk = json['produk']
+        .map<ProductBarangModel>(
+            (produk) => ProductBarangModel.fromJson(produk))
+        .toList();
+    // produk = ProductBarangModel.fromJson(json['produk']);
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'jumlah_pesan': jumlah_pesan,
-      'subtotal': subtotal,
-      // 'produk': produk.map((produk) => produk.toJson()).toList(),
+      'produk': produk.map((produk) => produk.toJson()).toList(),
+      // 'produk': produk.toJson(),
     };
   }
 }

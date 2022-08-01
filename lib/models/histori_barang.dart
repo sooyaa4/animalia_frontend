@@ -9,10 +9,11 @@ class HistoryBarangModel {
   int id;
   String alamat;
   double total_harga;
+  double subtotal;
   String status;
   String user_id;
   DateTime tanggal_pembelian;
-  List<DetailTransaksiBarangModel> detailbarang;
+  // List<DetailTransaksiBarangModel> detailbarang;
   List<PembayaranModel> pembayaran;
   List<PengirimanModel> pengiriman;
 
@@ -20,10 +21,11 @@ class HistoryBarangModel {
     this.id,
     this.alamat,
     this.total_harga,
+    this.subtotal,
     this.status,
     this.user_id,
     this.tanggal_pembelian,
-    this.detailbarang,
+    // this.detailbarang,
     this.pembayaran,
     this.pengiriman,
   });
@@ -37,21 +39,22 @@ class HistoryBarangModel {
     user_id = json['email'].toString();
     tanggal_pembelian = DateTime.parse(json['tanggal_pembelian'] as String);
     total_harga = double.parse(json['total_harga'].toString());
-    detailbarang = json['detailbarang']
-        .map<DetailTransaksiBarangModel>(
-            (detailbarang) => DetailTransaksiBarangModel.fromJson(detailbarang))
-        .toList();
+    subtotal = double.parse(json['subtotal'].toString());
+
+    // detailbarang = json['detailbarang']
+    //     .map<DetailTransaksiBarangModel>(
+    //         (detailbarang) => DetailTransaksiBarangModel.fromJson(detailbarang))
+    //     .toList();
+
     pembayaran = json['pembayaran']
         .map<PembayaranModel>(
             (pembayaran) => PembayaranModel.fromJson(pembayaran))
         .toList();
+
     pengiriman = json['pengiriman']
         .map<PengirimanModel>(
             (pengiriman) => PengirimanModel.fromJson(pengiriman))
         .toList();
-    // detailbarang = DetailTransaksiBarangModel.fromJson(json['detailbarang']);
-    // pembayaran = PembayaranModel.fromJson(json['pembayaran']);
-    // pengiriman = PengirimanModel.fromJson(json['pengiriman']);
   }
   Map<String, dynamic> toJson() {
     return {
@@ -60,9 +63,10 @@ class HistoryBarangModel {
       'status': status,
       'user_id': user_id,
       'total_harga': total_harga,
+      'subtotal': subtotal,
       'tanggal_pembelian': tanggal_pembelian,
-      'detailbarang':
-          detailbarang.map((detailbarang) => detailbarang.toJson()).toList(),
+      // 'detailbarang':
+      //     detailbarang.map((detailbarang) => detailbarang.toJson()).toList(),
       'pembayaran':
           pembayaran.map((pembayaran) => pembayaran.toJson()).toList(),
       'pengiriman':

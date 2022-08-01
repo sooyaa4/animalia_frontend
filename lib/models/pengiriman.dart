@@ -1,6 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
-
-import 'dart:ffi';
+// ignore_for_file: non_constant_identifier_names, avoid_print
 
 import 'package:animalia_frontend/models/metode_kirim.dart';
 
@@ -11,6 +9,7 @@ class PengirimanModel {
   DateTime tanggalTerima;
   String noresi;
   MetodKirimModel metodkirim;
+  // List<MetodKirimModel> metodkirim;
 
   PengirimanModel({
     this.id,
@@ -24,8 +23,8 @@ class PengirimanModel {
   PengirimanModel.fromJson(Map<String, dynamic> json) {
     print('FROM JSON: $json');
     print('id kirim: ${json['id']}');
-    id = json['id'].toInt();
-    status = json['status'].toString();
+    id = json['id'];
+    status = json['status'];
     tanggalKirim = json['tanggal_kirim'] == null
         ? null
         : DateTime.parse(json['tanggal_kirim'] as String);
@@ -34,15 +33,20 @@ class PengirimanModel {
         : DateTime.parse(json['tanggal_terima'] as String);
     noresi = json['noresi'].toString();
     metodkirim = MetodKirimModel.fromJson(json['metodkirim']);
+    // metodkirim = json['metodkirim']
+    //     .map<MetodKirimModel>((metodkirim) => metodkirim.fromJson(metodkirim))
+    //     .toList();
   }
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'status': status,
+      'status': status.toString(),
       'tanggalKirim': tanggalKirim.toString(),
       'tanggalTerima': tanggalTerima.toString(),
       'noresi': noresi,
       'metodkirim': metodkirim.toJson(),
+      // 'metodkirim':
+      //     metodkirim.map((metodkirim) => metodkirim.toJson()).toList(),
     };
   }
 }

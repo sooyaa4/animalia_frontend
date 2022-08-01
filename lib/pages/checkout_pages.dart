@@ -26,6 +26,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         cartProvider.carts,
         cartProvider.totalPrice(),
         cartProvider.subTotal(),
+        cartProvider.tanggalPembelian(),
         cartProvider.alamat = alamatController.text,
       )) {
         cartProvider.carts = [];
@@ -367,11 +368,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Shipping',
+                      'Biaya Ongkir',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      'free',
+                      'Rp 10.000',
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -394,7 +395,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                     Text(
-                      '\Rp${cartProvider.totalPrice()}',
+                      '\Rp${cartProvider.subTotal()}',
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                   ],

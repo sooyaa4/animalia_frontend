@@ -8,8 +8,9 @@ class ProductBarangModel {
   String nama_barang;
   String merk_barang;
   String deskripsi_barang;
-  String berat;
+  int berat;
   double harga;
+  String satuan;
   int stok;
   CategoryModel katbarang;
   DateTime createdAt;
@@ -24,6 +25,7 @@ class ProductBarangModel {
     this.deskripsi_barang,
     this.berat,
     this.harga,
+    this.satuan,
     this.stok,
     this.katbarang,
     this.createdAt,
@@ -38,6 +40,7 @@ class ProductBarangModel {
     merk_barang = json['merk_barang'];
     berat = json['berat'];
     harga = json['harga'].toDouble();
+    satuan = json['satuan'];
     stok = json['stok'];
     deskripsi_barang = json['deskripsi_barang'];
     katbarang = CategoryModel.fromJson(json['katbarang']);
@@ -57,6 +60,7 @@ class ProductBarangModel {
       'merk_barang': merk_barang,
       'berat': berat,
       'harga': harga,
+      'satuan': satuan,
       'stok ': stok,
       'category': katbarang.toJson(),
       'createdAt': createdAt.toString(),

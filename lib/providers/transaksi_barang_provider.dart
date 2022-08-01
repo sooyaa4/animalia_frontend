@@ -20,6 +20,7 @@ class TransaksiBarangprovider with ChangeNotifier {
     List<CartModel> carts,
     double totalPrice,
     double subTotal,
+    String tanggalPembelian,
     String alamat,
   ) async {
     try {
@@ -28,6 +29,7 @@ class TransaksiBarangprovider with ChangeNotifier {
         carts,
         totalPrice,
         subTotal,
+        tanggalPembelian,
         alamat,
       )) {
         return true;

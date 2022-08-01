@@ -14,14 +14,14 @@ class MetodKirimModel {
   MetodKirimModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nama_jenis_kirim = json['nama_jenis_kirim'];
-    ongkir = json['ongkir'];
+    ongkir = json['ongkir'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'nama_jenis_kirim': nama_jenis_kirim,
-      'ongkir': ongkir,
+      'ongkir': ongkir.toDouble(),
     };
   }
 }

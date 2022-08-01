@@ -77,4 +77,10 @@ class CartProvider with ChangeNotifier {
     subtotal += (totalPrice() + 10000);
     return subtotal;
   }
+
+  tanggalPembelian() {
+    String now = DateTime.now().toString();
+    print(now);
+    return now;
+  }
 }
