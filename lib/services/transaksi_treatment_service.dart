@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:animalia_frontend/models/cart_model.dart';
 import 'package:animalia_frontend/models/cart_treatment_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,15 +10,19 @@ class TransaksiTreatmentService {
     String token,
     List<CartTreatmentModel> carts,
     double totalPrice,
+    double subTotal,
+    String tanggalPembelian,
+    String alamat,
   ) async {
     var url = Uri.parse('$baseUrl/cotreatment');
     var headers = {
       'Content-type': 'application/json',
+      'Accept': 'application/json',
       'Authorization': token,
     };
     var body = jsonEncode(
       {
-        'alamat': 'Marsemoon',
+        'alamat': alamat,
         'items': carts
             .map(
               (cart) => {
@@ -29,11 +32,11 @@ class TransaksiTreatmentService {
             )
             .toList(),
         "status": "PENDING",
-        "total_harga": 2000,
-        "subtotal": 2100,
+        "total_harga": totalPrice,
+        "subtotal": subTotal,
         "metode_id": 1,
         "layanan_id": 1,
-        "tanggal_pembelian": "2022-07-21",
+        "tanggal_pembelian": tanggalPembelian,
         "tanggal_booking": "2022-07-21",
         "url": "aaa.png"
       },

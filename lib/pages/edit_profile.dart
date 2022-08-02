@@ -1,11 +1,20 @@
+import 'package:animalia_frontend/models/pelanggan_model.dart';
+import 'package:animalia_frontend/models/user_model.dart';
+import 'package:animalia_frontend/providers/auth_provider.dart';
+import 'package:animalia_frontend/providers/fetch_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:animalia_frontend/theme.dart';
+import 'package:provider/provider.dart';
 
 class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    // UserModel user = authProvider.user;
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+    FetchDataProvider fetchDataProvider =
+        Provider.of<FetchDataProvider>(context);
+    PelangganModel pelanggan = fetchDataProvider.pelanggan;
+    print('data pelanggan: ${fetchDataProvider.pelanggan}');
     Widget header() {
       return AppBar(
         leading: IconButton(
@@ -49,7 +58,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'a',
+                hintText: pelanggan.nama,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -111,7 +120,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'a',
+                hintText: '${user.email}',
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(

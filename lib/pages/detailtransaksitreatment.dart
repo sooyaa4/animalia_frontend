@@ -1,52 +1,31 @@
-import 'package:animalia_frontend/providers/auth_provider.dart';
-import 'package:animalia_frontend/providers/cart_provider.dart';
-import 'package:animalia_frontend/providers/cart_treatment_proivider.dart';
-import 'package:animalia_frontend/providers/transaksi_treatment.dart';
+import 'package:animalia_frontend/models/histori_barang.dart';
+import 'package:animalia_frontend/models/histori_treatment.dart';
+import 'package:animalia_frontend/providers/histori_transaksi_barang.dart';
+import 'package:animalia_frontend/providers/histori_transaksi_treatment.dart';
 import 'package:animalia_frontend/theme.dart';
-import 'package:animalia_frontend/widgets/cart_treatment_card.dart';
-import 'package:animalia_frontend/widgets/checkout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
-class CheckoutTreatmentPage extends StatefulWidget {
+class DetailTransaksiTreatment extends StatefulWidget {
+  final HistoriTreatmentModel treat;
+  DetailTransaksiTreatment(this.treat);
   @override
-  State<CheckoutTreatmentPage> createState() => _CheckoutTreatmentPageState();
+  State<DetailTransaksiTreatment> createState() =>
+      _DetailTransaksiTreatmentState();
 }
 
-class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
-  TextEditingController alamatController = TextEditingController(text: '');
+class _DetailTransaksiTreatmentState extends State<DetailTransaksiTreatment> {
   @override
   Widget build(BuildContext context) {
-    CartTreatmentProvider cartProvider =
-        Provider.of<CartTreatmentProvider>(context);
-    TransaksiTreatmentProvider transactionProvider =
-        Provider.of<TransaksiTreatmentProvider>(context);
-    AuthProvider authProvider = Provider.of<AuthProvider>(context);
-    handleCheckout() async {
-      if (await transactionProvider.checkout(
-        authProvider.user.token,
-        cartProvider.carts,
-        cartProvider.totalPrice(),
-        cartProvider.subTotal(),
-        cartProvider.tanggalPembelian(),
-        cartProvider.alamat = alamatController.text,
-      )) {
-        cartProvider.carts = [];
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/checkout-success', (route) => false);
-      }
-    }
-
+    HistoriTreatmentProvider historiTreatmentProvider =
+        Provider.of<HistoriTreatmentProvider>(context);
     Widget header() {
       return AppBar(
-        backgroundColor: backgroundColor2,
+        backgroundColor: backgroundColor1,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          'Checkout Detail',
-          style: primaryTextStyle,
-        ),
+        title: Text('Detail Transaksi'),
       );
     }
 
@@ -68,13 +47,37 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                   style: primaryTextStyle.copyWith(
                       fontSize: 16, fontWeight: medium),
                 ),
-                Column(
-                  children: cartProvider.carts
-                      .map(
-                        (cart) => CartTreatmentCard(cart),
-                      )
-                      .toList(),
-                ),
+                // Column(
+                //   children: [
+                //     Container(
+                //       margin: EdgeInsets.only(top: 14),
+                //       child: SingleChildScrollView(
+                //         scrollDirection: Axis.horizontal,
+                //         child: Row(
+                //           children: [
+                //             SizedBox(
+                //               width: defaultMargin,
+                //             ),
+                //             Row(
+                //               children: widget.trans.detailbarang
+                //                   .map(
+                //                     (tr) => DetailProductCard(tr),
+                //                   )
+                //                   .toList(),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // Column(
+                //   children: widget.trans.detailbarang
+                //       .map(
+                //         (tr) => DetailProductCard(tr),
+                //       )
+                //       .toList(),
+                // ),
               ],
             ),
           ),
@@ -91,7 +94,7 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Address Details',
+                  'Alamat Pengiriman',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -138,56 +141,19 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                           ),
                         ),
                         SizedBox(
-                          height: defaultMargin,
+                          height: 25,
                         ),
                         Text(
-                          'Your Address',
+                          'Alamat pengiriman',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                             fontWeight: light,
                           ),
                         ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 12,
-                              ),
-                              Container(
-                                height: 45,
-                                width: 230,
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: backgroundColor2,
-                                  borderRadius: BorderRadius.circular(12),
-                                  // border: Border.all(
-                                  //   color: primaryColor,
-                                  // ),
-                                ),
-                                child: Center(
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                        child: TextFormField(
-                                          style: primaryTextStyle,
-                                          controller: alamatController,
-                                          decoration: InputDecoration.collapsed(
-                                            hintText: 'Alamat anda',
-                                            hintStyle: primaryTextStyle,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                        Text(
+                          widget.treat.alamat,
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
                           ),
                         ),
                       ],
@@ -210,7 +176,7 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Pilih metode pembayaran',
+                  'Metode pembayaran',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -227,10 +193,26 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                           'assets/icon_store_location.png',
                           width: 40,
                         ),
+                        Image.asset(
+                          'assets/icon_line.png',
+                          height: 30,
+                        ),
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/icon_line.png',
+                          height: 30,
+                        ),
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
                       ],
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 10,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,7 +225,39 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                           ),
                         ),
                         Text(
-                          'BCA',
+                          widget.treat.pembayaran[0].metodbayar.nama_metode,
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          'Status pembayaran',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Text(
+                          widget.treat.pembayaran[0].status,
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          'Tanggal pembayaran',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Text(
+                          widget.treat.pembayaran[0].createdAt.toString(),
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -268,7 +282,7 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Pilih Layanan Treatment',
+                  'Tanggal booking treatments',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -288,20 +302,20 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                       ],
                     ),
                     SizedBox(
-                      width: 12,
+                      width: 10,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Layanan',
+                          'Tanggal',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                             fontWeight: light,
                           ),
                         ),
                         Text(
-                          'Home Service',
+                          widget.treat.pembayaran[0].metodbayar.nama_metode,
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -326,7 +340,7 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Payment Sumary ',
+                  'Detail Pembayaran',
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -339,28 +353,12 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Jumlah pemesanan treatment',
-                      style: secondaryTextStyle.copyWith(fontSize: 12),
-                    ),
-                    Text(
-                      '${cartProvider.totalItems()} items',
-                      style: primaryTextStyle.copyWith(fontWeight: medium),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Harga Treatment',
+                      'Total Harga Treatments',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
                       NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
-                          .format(cartProvider.totalPrice()),
+                          .format(widget.treat.total_harga),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -372,13 +370,30 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Harga Layanan',
+                      'Tanggal Transaksi',
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      'Rp 30,000',
+                      widget.treat.tanggal_pembelian.toString(),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Text(
+                    //   'Ongkos Kirim',
+                    //   style: secondaryTextStyle.copyWith(fontSize: 12),
+                    // ),
+                    // Text(
+                    //   NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                    //       .format(),
+                    //   style: primaryTextStyle.copyWith(fontWeight: medium),
+                    // ),
                   ],
                 ),
                 SizedBox(
@@ -400,7 +415,7 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                     ),
                     Text(
                       NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
-                          .format(cartProvider.subTotal()),
+                          .format(widget.treat.subtotal),
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                   ],
@@ -422,7 +437,6 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
               vertical: defaultMargin,
             ),
             child: TextButton(
-              onPressed: handleCheckout,
               style: TextButton.styleFrom(
                 backgroundColor: backgroundColor2,
                 shape: RoundedRectangleBorder(
@@ -430,7 +444,7 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                 ),
               ),
               child: Text(
-                'Checkout Now',
+                'Selesai',
                 style: primaryTextStyle.copyWith(
                   fontWeight: semibold,
                   fontSize: 16,

@@ -3,6 +3,7 @@
 import 'package:animalia_frontend/models/cart_model.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CheckoutCard extends StatelessWidget {
   final CartModel cart;
@@ -52,7 +53,8 @@ class CheckoutCard extends StatelessWidget {
                   height: 2,
                 ),
                 Text(
-                  '\Rp${cart.product.harga}',
+                  NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                      .format(cart.product.harga),
                   style: priceTextStyle,
                 ),
               ],

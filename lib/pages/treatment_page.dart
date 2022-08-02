@@ -3,6 +3,7 @@ import 'package:animalia_frontend/providers/cart_treatment_proivider.dart';
 import 'package:flutter/material.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class TreatmentPage extends StatefulWidget {
   final TreatmentModel treatments;
@@ -109,22 +110,6 @@ class _TreatmentPageState extends State<TreatmentPage> {
         ),
       );
     }
-
-    // Widget familiarShoesCart(String imageurl) {
-    //   return Container(
-    //     width: 54,
-    //     height: 54,
-    //     margin: EdgeInsets.only(
-    //       right: 16,
-    //     ),
-    //     decoration: BoxDecoration(
-    //       image: DecorationImage(
-    //         image: AssetImage(imageurl),
-    //       ),
-    //       borderRadius: BorderRadius.circular(6),
-    //     ),
-    //   );
-    // }
 
     Widget header() {
       int index = -1;
@@ -285,7 +270,8 @@ class _TreatmentPageState extends State<TreatmentPage> {
                     style: primaryTextStyle,
                   ),
                   Text(
-                    '\Rp${widget.treatments.harga}',
+                    NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                        .format(widget.treatments.harga),
                     style: priceTextStyle.copyWith(
                         fontSize: 16, fontWeight: semibold),
                   ),
@@ -332,12 +318,6 @@ class _TreatmentPageState extends State<TreatmentPage> {
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: defaultMargin,
-                    ),
-                    child: Text(
-                      'Familiar product',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
                     ),
                   ),
                   SizedBox(

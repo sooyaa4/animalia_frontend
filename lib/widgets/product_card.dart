@@ -2,6 +2,7 @@ import 'package:animalia_frontend/models/product_barang_model.dart';
 import 'package:animalia_frontend/pages/product_page.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductBarangModel product;
@@ -70,7 +71,8 @@ class ProductCard extends StatelessWidget {
                     maxLines: 1,
                   ),
                   Text(
-                    '\Rp${product.harga}',
+                    NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                        .format(product.harga),
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,

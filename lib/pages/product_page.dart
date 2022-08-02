@@ -5,6 +5,7 @@ import 'package:animalia_frontend/theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class ProductPage extends StatefulWidget {
   final ProductBarangModel product;
@@ -148,24 +149,9 @@ class _ProductPageState extends State<ProductPage> {
                     Icons.chevron_left,
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/cart');
-                  },
-                  child: Icon(
-                    Icons.shopping_bag,
-                    color: backgroundColor2,
-                  ),
-                ),
               ],
             ),
           ),
-          // Image.asset(
-          //   'assets/whiskas.jpg',
-          //   width: MediaQuery.of(context).size.width,
-          //   height: 200,
-          //   fit: BoxFit.cover,
-          // ),
           CarouselSlider(
             items: widget.product.galeri
                 .map(
@@ -207,7 +193,7 @@ class _ProductPageState extends State<ProductPage> {
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(12),
           ),
-          color: backgroundColor2,
+          color: primaryColor,
         ),
         child: Column(
           children: [
@@ -234,6 +220,7 @@ class _ProductPageState extends State<ProductPage> {
                           widget.product.katbarang.nama_kategori,
                           style: secondaryTextStyle.copyWith(
                             fontSize: 13,
+                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -283,22 +270,25 @@ class _ProductPageState extends State<ProductPage> {
               ),
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: backgroundColor1,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Price starts from',
+                    'Harga produk',
                     style: hurufputih.copyWith(
-                      fontWeight: semibold,
-                    ),
+                        fontWeight: semibold, color: Colors.black),
                   ),
                   Text(
-                    '\Rp${widget.product.harga}',
-                    style:
-                        hurufputih.copyWith(fontSize: 16, fontWeight: semibold),
+                    NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                        .format(widget.product.harga),
+                    style: hurufputih.copyWith(
+                      fontSize: 16,
+                      fontWeight: semibold,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),
@@ -343,8 +333,26 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   Text(
                     widget.product.berat.toString() +
-                        '' +
+                        ' ' +
                         widget.product.satuan,
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: light,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Stok tersedia',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: semibold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 12,
+                  ),
+                  Text(
+                    widget.product.stok.toString(),
                     style: primaryTextStyle.copyWith(
                       fontWeight: light,
                     ),
@@ -376,7 +384,7 @@ class _ProductPageState extends State<ProductPage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          backgroundColor: primaryColor,
+                          backgroundColor: Colors.white,
                         ),
                         child: Text(
                           'Add to cart',
@@ -397,7 +405,7 @@ class _ProductPageState extends State<ProductPage> {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor1,
+      backgroundColor: Colors.white,
       body: ListView(
         children: [
           header(),

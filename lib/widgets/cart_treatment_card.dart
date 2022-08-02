@@ -4,6 +4,7 @@ import 'package:animalia_frontend/providers/cart_treatment_proivider.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class CartTreatmentCard extends StatelessWidget {
   final CartTreatmentModel cartt;
@@ -56,7 +57,8 @@ class CartTreatmentCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$${cartt.treatment.harga}',
+                      NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                          .format(cartt.treatment.harga),
                       style: primaryTextStyle,
                     ),
                   ],

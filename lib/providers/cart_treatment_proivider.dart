@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class CartTreatmentProvider with ChangeNotifier {
   List<CartTreatmentModel> _carts = [];
   List<CartTreatmentModel> get carts => _carts;
+  String alamat;
 
   set carts(List<CartTreatmentModel> carts) {
     _carts = carts;
@@ -69,5 +70,17 @@ class CartTreatmentProvider with ChangeNotifier {
     } else {
       return true;
     }
+  }
+
+  subTotal() {
+    double subtotal = 0;
+    subtotal += (totalPrice() + 30000);
+    return subtotal;
+  }
+
+  tanggalPembelian() {
+    String now = DateTime.now().toString();
+    print(now);
+    return now;
   }
 }

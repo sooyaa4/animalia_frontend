@@ -5,6 +5,7 @@ import 'package:animalia_frontend/theme.dart';
 import 'package:animalia_frontend/widgets/cart_treatment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class CartTreatmentPage extends StatelessWidget {
   @override
@@ -116,7 +117,8 @@ class CartTreatmentPage extends StatelessWidget {
                     style: primaryTextStyle,
                   ),
                   Text(
-                    '\Rp${cartTreatmentProvider.totalPrice()}',
+                    NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                        .format(cartTreatmentProvider.totalPrice()),
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                     ),

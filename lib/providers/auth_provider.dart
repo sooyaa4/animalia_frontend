@@ -6,21 +6,12 @@ import 'package:flutter/material.dart';
 class AuthProvider with ChangeNotifier {
   UserModel _user;
 
-  // PelangganModel _pelanggan;
-
-  // PelangganModel get pelanggan => _pelanggan;
-
   UserModel get user => _user;
 
   set user(UserModel user) {
     _user = user;
     notifyListeners();
   }
-
-  // set pelanggan(PelangganModel pelanggan) {
-  //   _pelanggan = pelanggan;
-  //   notifyListeners();
-  // }
 
   Future<bool> register({
     String nama,

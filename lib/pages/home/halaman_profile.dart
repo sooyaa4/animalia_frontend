@@ -114,7 +114,7 @@ class ProfilePage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/edit-password');
+                  Navigator.pushNamed(context, '/otp');
                 },
                 child: menuItem(
                   'Changes Password',

@@ -4,6 +4,8 @@ import 'package:animalia_frontend/theme.dart';
 import 'package:animalia_frontend/widgets/detailproduk_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+import 'package:date_format/date_format.dart';
 
 class DetailTransaksiProdukPage extends StatefulWidget {
   final HistoryBarangModel trans;
@@ -369,7 +371,8 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      widget.trans.total_harga.toString(),
+                      NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                          .format(widget.trans.total_harga),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -385,7 +388,7 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      widget.trans.tanggal_pembelian.toLocal().toString(),
+                      widget.trans.tanggal_pembelian.toString(),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -401,7 +404,8 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      widget.trans.pengiriman[0].metodkirim.ongkir.toString(),
+                      NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                          .format(widget.trans.pengiriman[0].metodkirim.ongkir),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -424,7 +428,8 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                     Text(
-                      '\Rp ${widget.trans.subtotal}',
+                      NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                          .format(widget.trans.subtotal),
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                   ],

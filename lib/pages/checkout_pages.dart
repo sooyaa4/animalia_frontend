@@ -1,10 +1,13 @@
 import 'package:animalia_frontend/providers/auth_provider.dart';
 import 'package:animalia_frontend/providers/cart_provider.dart';
+import 'package:animalia_frontend/providers/metode_bayar_provider.dart';
 import 'package:animalia_frontend/providers/transaksi_barang_provider.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:animalia_frontend/widgets/checkout_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:intl/intl.dart';
 
 class CheckoutPage extends StatefulWidget {
   @override
@@ -20,6 +23,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
     TransaksiBarangprovider transaksiBarangprovider =
         Provider.of<TransaksiBarangprovider>(context);
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    MetodeBayarProvider metodeBayarProvider =
+        Provider.of<MetodeBayarProvider>(context);
     handleCheckout() async {
       if (await transaksiBarangprovider.checkout(
         authProvider.user.token,
@@ -356,7 +361,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      '\Rp${cartProvider.totalPrice()}',
+                      NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                          .format(cartProvider.totalPrice()),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -395,7 +401,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                     Text(
-                      '\Rp${cartProvider.subTotal()}',
+                      NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                          .format(cartProvider.subTotal()),
                       style: priceTextStyle.copyWith(fontWeight: semibold),
                     ),
                   ],

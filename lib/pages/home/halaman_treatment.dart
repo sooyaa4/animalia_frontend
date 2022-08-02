@@ -4,6 +4,7 @@ import 'package:animalia_frontend/widgets/treatment_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class MainPageTreatment extends StatelessWidget {
   @override
@@ -70,6 +71,7 @@ class MainPageTreatment extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(
                   left: 10,
+                  top: 10,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -86,18 +88,6 @@ class MainPageTreatment extends StatelessWidget {
                         width: 30,
                       ),
                     ),
-                    SizedBox(
-                      width: 3,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/wishlist');
-                      },
-                      child: Image.asset(
-                        'assets/icon_wishlist_white.png',
-                        width: 60,
-                      ),
-                    ),
                   ],
                 ),
               )
@@ -108,26 +98,6 @@ class MainPageTreatment extends StatelessWidget {
     }
 
     Widget treatmentCard() {
-      // return Container(
-      //   margin: EdgeInsets.only(top: 14),
-      //   child: SingleChildScrollView(
-      //     scrollDirection: Axis.horizontal,
-      //     child: Row(
-      //       children: [
-      //         SizedBox(
-      //           width: defaultMargin,
-      //         ),
-      //         Row(
-      //           children: treatmentProvider.treatments
-      //               .map(
-      //                 (product) => TreatmentCard(product),
-      //               )
-      //               .toList(),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // );
       return Container(
         margin: EdgeInsets.only(
           top: 10,

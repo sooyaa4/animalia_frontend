@@ -1,6 +1,7 @@
 import 'package:animalia_frontend/models/pelanggan_model.dart';
 import 'package:animalia_frontend/models/user_model.dart';
 import 'package:animalia_frontend/providers/auth_provider.dart';
+import 'package:animalia_frontend/providers/fetch_data_provider.dart';
 import 'package:animalia_frontend/providers/product_barang_provider.dart';
 import 'package:animalia_frontend/providers/treatment_provider.dart';
 import 'package:animalia_frontend/theme.dart';
@@ -14,6 +15,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
+    FetchDataProvider fetchDataProvider =
+        Provider.of<FetchDataProvider>(context);
+    fetchDataProvider.getDataPengguna(user);
+    PelangganModel pelanggan = fetchDataProvider.pelanggan;
     ProductBarangProvider productBarangProvider =
         Provider.of<ProductBarangProvider>(context);
     TreatmentProvider treatmentProvider =

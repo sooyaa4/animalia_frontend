@@ -4,6 +4,7 @@ import 'package:animalia_frontend/models/treatment_model.dart';
 import 'package:animalia_frontend/pages/treatment_page.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TreatmentTile extends StatelessWidget {
   final TreatmentModel treatments;
@@ -52,7 +53,8 @@ class TreatmentTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '\Rp.${treatments.harga}',
+                    NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                        .format(treatments.harga),
                     style: priceTextStyle.copyWith(fontSize: 12),
                   ),
                   SizedBox(

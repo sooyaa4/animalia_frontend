@@ -39,8 +39,10 @@ dependencies:
   http: ^0.13.4
   carousel_slider: ^4.1.1
   shared_preferences: ^2.0.15
-  email_auth: ^1.0.0
+  email_auth:
   dropdown_formfield: ^0.1.4
+  intl: ^0.17.0
+  date_format: ^2.0.6
   # flutter_secure_storage: ^4.1.0
 
 dev_dependencies:

@@ -6,7 +6,7 @@ import 'package:animalia_frontend/providers/cart_provider.dart';
 import 'package:animalia_frontend/providers/histori_transaksi_barang.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HistoriBarangCard extends StatelessWidget {
@@ -69,7 +69,9 @@ class HistoriBarangCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '\Rp.${trans.total_harga}',
+                        NumberFormat.simpleCurrency(
+                                name: 'Rp ', decimalDigits: 0)
+                            .format(trans.total_harga),
                         style: primaryTextStyle,
                       ),
                     ],

@@ -30,4 +30,8 @@ class CartTreatmentModel {
   double getTotalPrice() {
     return treatment.harga * jumlah_pesan_jasa;
   }
+
+  double getSubTotal() {
+    return (treatment.harga * jumlah_pesan_jasa) + 10000;
+  }
 }
