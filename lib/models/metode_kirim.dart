@@ -12,6 +12,8 @@ class MetodKirimModel {
   });
 
   MetodKirimModel.fromJson(Map<String, dynamic> json) {
+    print('FROM JSON: $json');
+    print('id: ${json['id']}');
     id = json['id'];
     nama_jenis_kirim = json['nama_jenis_kirim'];
     ongkir = json['ongkir'].toDouble();

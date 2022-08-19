@@ -1,5 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:animalia_frontend/pages/component/category.dart';
+import 'package:animalia_frontend/providers/kategori_provider.dart';
 import 'package:animalia_frontend/providers/product_barang_provider.dart';
 import 'package:animalia_frontend/theme.dart';
 import 'package:animalia_frontend/widgets/product_card.dart';

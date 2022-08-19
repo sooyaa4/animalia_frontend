@@ -6,6 +6,7 @@ class CartProvider with ChangeNotifier {
   List<CartModel> _carts = [];
   List<CartModel> get carts => _carts;
   String alamat;
+  // String kurir;
 
   set carts(List<CartModel> carts) {
     _carts = carts;

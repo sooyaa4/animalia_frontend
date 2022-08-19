@@ -1,5 +1,6 @@
 import 'package:animalia_frontend/providers/auth_provider.dart';
 import 'package:animalia_frontend/providers/cart_provider.dart';
+import 'package:animalia_frontend/providers/jeniskirim_provider.dart';
 import 'package:animalia_frontend/providers/metode_bayar_provider.dart';
 import 'package:animalia_frontend/providers/transaksi_barang_provider.dart';
 import 'package:animalia_frontend/theme.dart';
@@ -16,6 +17,7 @@ class CheckoutPage extends StatefulWidget {
 
 class _CheckoutPageState extends State<CheckoutPage> {
   TextEditingController alamatController = TextEditingController(text: '');
+  String kurir;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     MetodeBayarProvider metodeBayarProvider =
         Provider.of<MetodeBayarProvider>(context);
+    JenisKirimProvider jenisKirimProvider =
+        Provider.of<JenisKirimProvider>(context);
     handleCheckout() async {
       if (await transaksiBarangprovider.checkout(
         authProvider.user.token,
@@ -33,6 +37,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         cartProvider.subTotal(),
         cartProvider.tanggalPembelian(),
         cartProvider.alamat = alamatController.text,
+        // cartProvider.kurir = kurir,
       )) {
         cartProvider.carts = [];
         Navigator.pushNamedAndRemoveUntil(
@@ -313,6 +318,41 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ],
                 ),
               ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 17, vertical: 1),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Color(0XFFF2F2F2), width: 2),
+              boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)],
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                iconSize: 36,
+                icon: Icon(
+                  Icons.arrow_drop_down,
+                  color: Color(0xff13A89E),
+                ),
+                isExpanded: true,
+                value: jenisKirimProvider.kirim,
+                onChanged: (value) {
+                  setState(() {
+                    jenisKirimProvider.kirims = value;
+                  });
+                },
+                items: jenisKirimProvider.kirim.map((kirim) {
+                  return DropdownMenuItem(
+                    child: Text(kirim.id.toString()),
+                    value: kirim,
+                  );
+                }).toList(),
+                hint: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text('Pilihan Kurir'),
+                ),
+              ),
             ),
           ),
           Container(

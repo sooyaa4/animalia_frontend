@@ -257,7 +257,8 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                           ),
                         ),
                         Text(
-                          widget.trans.pembayaran[0].createdAt.toString(),
+                          DateFormat('dd MMM yyyy')
+                              .format(widget.trans.pembayaran[0].createdAt),
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -321,6 +322,9 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                             fontWeight: medium,
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Text(
                           'Nomer Resi ',
                           style: secondaryTextStyle.copyWith(
@@ -330,6 +334,39 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                         ),
                         Text(
                           widget.trans.pengiriman[0].noresi,
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Status Pengiriman ',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Text(
+                          widget.trans.pengiriman[0].status,
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Tanggal Pengiriman ',
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: light,
+                          ),
+                        ),
+                        Text(
+                          DateFormat('d MMM yyyy')
+                              .format(widget.trans.pengiriman[0].tanggalKirim),
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -388,7 +425,8 @@ class _DetailTransaksiProdukPageState extends State<DetailTransaksiProdukPage> {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      widget.trans.tanggal_pembelian.toString(),
+                      DateFormat('dd MMM yyyy')
+                          .format(widget.trans.tanggal_pembelian),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],

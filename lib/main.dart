@@ -18,6 +18,8 @@ import 'package:animalia_frontend/providers/cart_treatment_proivider.dart';
 import 'package:animalia_frontend/providers/fetch_data_provider.dart';
 import 'package:animalia_frontend/providers/histori_transaksi_barang.dart';
 import 'package:animalia_frontend/providers/histori_transaksi_treatment.dart';
+import 'package:animalia_frontend/providers/jeniskirim_provider.dart';
+import 'package:animalia_frontend/providers/kategori_provider.dart';
 import 'package:animalia_frontend/providers/metode_bayar_provider.dart';
 import 'package:animalia_frontend/providers/product_barang_provider.dart';
 import 'package:animalia_frontend/providers/transaksi_barang_provider.dart';
@@ -25,6 +27,7 @@ import 'package:animalia_frontend/providers/transaksi_treatment.dart';
 import 'package:animalia_frontend/providers/treatment_provider.dart';
 import 'package:animalia_frontend/providers/wishlist_provider.dart';
 import 'package:animalia_frontend/widgets/otp.dart';
+import 'package:animalia_frontend/widgets/pembayaran_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -72,6 +75,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => MetodeBayarProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => JenisKirimProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => KategoriProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -91,6 +100,7 @@ class MyApp extends StatelessWidget {
           '/checkouttreatment': (contex) => CheckoutTreatmentPage(),
           '/checkout-success': (contex) => CheckoutSuccessPage(),
           '/otp': (context) => OtpPage(),
+          '/bayar': (context) => PembayaranCard(),
         },
       ),
     );

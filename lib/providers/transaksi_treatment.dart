@@ -4,13 +4,22 @@ import 'package:flutter/cupertino.dart';
 
 class TransaksiTreatmentProvider with ChangeNotifier {
   String alamat;
+  String tanggalBooking;
 
   String get getAlamat {
     return alamat;
   }
 
+  String get getTanggalBooking {
+    return tanggalBooking;
+  }
+
   set setAlamat(String alamat) {
     alamat = alamat;
+  }
+
+  set getTanggalBooking(String tanggalBooking) {
+    tanggalBooking = tanggalBooking;
   }
 
   Future<bool> checkout(
@@ -20,6 +29,7 @@ class TransaksiTreatmentProvider with ChangeNotifier {
     double subTotal,
     String tanggalPembelian,
     String alamat,
+    String tanggalBooking,
   ) async {
     try {
       if (await TransaksiTreatmentService().checkout(
@@ -29,6 +39,7 @@ class TransaksiTreatmentProvider with ChangeNotifier {
         subTotal,
         tanggalPembelian,
         alamat,
+        tanggalBooking,
       )) {
         return true;
       } else {

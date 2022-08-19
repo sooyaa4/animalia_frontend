@@ -16,6 +16,7 @@ class CheckoutTreatmentPage extends StatefulWidget {
 
 class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
   TextEditingController alamatController = TextEditingController(text: '');
+  String _dateTime;
   @override
   Widget build(BuildContext context) {
     CartTreatmentProvider cartProvider =
@@ -31,6 +32,7 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
         cartProvider.subTotal(),
         cartProvider.tanggalPembelian(),
         cartProvider.alamat = alamatController.text,
+        cartProvider.tanggalBooking = _dateTime,
       )) {
         cartProvider.carts = [];
         Navigator.pushNamedAndRemoveUntil(
@@ -196,6 +198,22 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
                 ),
               ],
             ),
+          ),
+          RaisedButton(
+            child: Text("Pick a date"),
+            onPressed: () {
+              showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime.now(),
+                lastDate: DateTime(2099),
+              ).then((date) {
+                //tambahkan setState dan panggil variabel _dateTime.
+                setState(() {
+                  _dateTime = date.toString();
+                });
+              });
+            },
           ),
           Container(
             margin: EdgeInsets.only(

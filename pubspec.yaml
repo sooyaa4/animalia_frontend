@@ -43,6 +43,8 @@ dependencies:
   dropdown_formfield: ^0.1.4
   intl: ^0.17.0
   date_format: ^2.0.6
+  flutter_countdown_timer: ^4.1.0
+  image_picker: ^0.8.5+3
   # flutter_secure_storage: ^4.1.0
 
 dev_dependencies:

@@ -10,6 +10,7 @@ class HistoriTreatmentModel {
   String status;
   String user_id;
   DateTime tanggal_pembelian;
+  DateTime tanggal_booking;
   List<PembayaranModel> pembayaran;
 
   HistoriTreatmentModel({
@@ -20,6 +21,7 @@ class HistoriTreatmentModel {
     this.status,
     this.user_id,
     this.tanggal_pembelian,
+    this.tanggal_booking,
     this.pembayaran,
   });
 
@@ -29,6 +31,8 @@ class HistoriTreatmentModel {
     status = json['status'].toString();
     user_id = json['email'].toString();
     tanggal_pembelian = DateTime.parse(json['tanggal_pembelian'] as String);
+    tanggal_booking = DateTime.parse(json['tanggal_booking'] as String);
+
     total_harga = double.parse(json['total_harga'].toString());
     subtotal = double.parse(json['subtotal'].toString());
     pembayaran = json['pembayaran']
@@ -44,6 +48,7 @@ class HistoriTreatmentModel {
       'user_id': user_id,
       'total_harga': total_harga,
       'tanggal_pembelian': tanggal_pembelian,
+      'tanggal_booking': tanggal_booking,
       'pembayaran':
           pembayaran.map((pembayaran) => pembayaran.toJson()).toList(),
     };

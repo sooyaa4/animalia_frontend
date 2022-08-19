@@ -6,14 +6,19 @@ import 'package:flutter/widgets.dart';
 
 class TransaksiBarangprovider with ChangeNotifier {
   String alamat;
+  // String kurir;
 
   String get getAlamat {
     return alamat;
   }
 
-  set setAlamat(String alamat) {
-    alamat = alamat;
-  }
+  // String get getKurir {
+  //   return kurir;
+  // }
+
+  // set setKurir(String kurir) {
+  //   kurir = kurir;
+  // }
 
   Future<bool> checkout(
     String token,
@@ -22,6 +27,7 @@ class TransaksiBarangprovider with ChangeNotifier {
     double subTotal,
     String tanggalPembelian,
     String alamat,
+    // String kurir,
   ) async {
     try {
       if (await TransaksiBarangService().checkout(
@@ -31,6 +37,7 @@ class TransaksiBarangprovider with ChangeNotifier {
         subTotal,
         tanggalPembelian,
         alamat,
+        // kurir,
       )) {
         return true;
       } else {

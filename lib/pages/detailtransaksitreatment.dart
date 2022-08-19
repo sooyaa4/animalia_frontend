@@ -257,7 +257,8 @@ class _DetailTransaksiTreatmentState extends State<DetailTransaksiTreatment> {
                           ),
                         ),
                         Text(
-                          widget.treat.pembayaran[0].createdAt.toString(),
+                          DateFormat('d MMM yyyy')
+                              .format(widget.treat.pembayaran[0].createdAt),
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -315,7 +316,8 @@ class _DetailTransaksiTreatmentState extends State<DetailTransaksiTreatment> {
                           ),
                         ),
                         Text(
-                          widget.treat.pembayaran[0].metodbayar.nama_metode,
+                          DateFormat('d MMM yyyy')
+                              .format(widget.treat.tanggal_booking),
                           style: primaryTextStyle.copyWith(
                             fontWeight: medium,
                           ),
@@ -374,7 +376,8 @@ class _DetailTransaksiTreatmentState extends State<DetailTransaksiTreatment> {
                       style: secondaryTextStyle.copyWith(fontSize: 12),
                     ),
                     Text(
-                      widget.treat.tanggal_pembelian.toString(),
+                      DateFormat('d MMM yyyy')
+                          .format(widget.treat.tanggal_pembelian),
                       style: primaryTextStyle.copyWith(fontWeight: medium),
                     ),
                   ],
@@ -385,15 +388,15 @@ class _DetailTransaksiTreatmentState extends State<DetailTransaksiTreatment> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Text(
-                    //   'Ongkos Kirim',
-                    //   style: secondaryTextStyle.copyWith(fontSize: 12),
-                    // ),
-                    // Text(
-                    //   NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
-                    //       .format(),
-                    //   style: primaryTextStyle.copyWith(fontWeight: medium),
-                    // ),
+                    Text(
+                      'Ongkos Jasa',
+                      style: secondaryTextStyle.copyWith(fontSize: 12),
+                    ),
+                    Text(
+                      NumberFormat.simpleCurrency(name: 'Rp ', decimalDigits: 0)
+                          .format(30000),
+                      style: primaryTextStyle.copyWith(fontWeight: medium),
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -421,35 +424,6 @@ class _DetailTransaksiTreatmentState extends State<DetailTransaksiTreatment> {
                   ],
                 ),
               ],
-            ),
-          ),
-          SizedBox(
-            height: defaultMargin,
-          ),
-          Divider(
-            thickness: 1,
-            color: Color(0xff2E3141),
-          ),
-          Container(
-            height: 50,
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(
-              vertical: defaultMargin,
-            ),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: backgroundColor2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Text(
-                'Selesai',
-                style: primaryTextStyle.copyWith(
-                  fontWeight: semibold,
-                  fontSize: 16,
-                ),
-              ),
             ),
           ),
         ],

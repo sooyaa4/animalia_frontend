@@ -14,6 +14,7 @@ class TransaksiBarangService {
     double subTotal,
     String tanggalPembelian,
     String alamat,
+    // String kurir,
   ) async {
     var url = Uri.parse('$baseUrl/cobarang');
     var headers = {

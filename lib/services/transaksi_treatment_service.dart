@@ -13,6 +13,7 @@ class TransaksiTreatmentService {
     double subTotal,
     String tanggalPembelian,
     String alamat,
+    String tanggalBooking,
   ) async {
     var url = Uri.parse('$baseUrl/cotreatment');
     var headers = {
@@ -37,7 +38,7 @@ class TransaksiTreatmentService {
         "metode_id": 1,
         "layanan_id": 1,
         "tanggal_pembelian": tanggalPembelian,
-        "tanggal_booking": "2022-07-21",
+        "tanggal_booking": tanggalBooking,
         "url": "aaa.png"
       },
     );

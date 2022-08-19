@@ -6,6 +6,7 @@ class CartTreatmentProvider with ChangeNotifier {
   List<CartTreatmentModel> _carts = [];
   List<CartTreatmentModel> get carts => _carts;
   String alamat;
+  String tanggalBooking;
 
   set carts(List<CartTreatmentModel> carts) {
     _carts = carts;

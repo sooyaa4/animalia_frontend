@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 
 class FetchDataProvider with ChangeNotifier {
   PelangganModel _pelanggan;
+
   PelangganModel get pelanggan => _pelanggan;
 
   set pelanggan(PelangganModel pelanggan) {
@@ -12,9 +13,9 @@ class FetchDataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getDataPengguna(UserModel user) async {
+  Future<void> getDataPengguna() async {
     try {
-      PelangganModel pelanggan = await FetchDataService().getDataPengguna(user);
+      PelangganModel pelanggan = await FetchDataService().getDataPengguna();
       _pelanggan = pelanggan;
 
       print(_pelanggan);

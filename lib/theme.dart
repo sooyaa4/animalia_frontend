@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 double defaultMargin = 30.0;
+const kDefaultPaddin = 20.0;
+
+const kTextColor = Color(0xff535353);
+const kTextLightColor = Color(0xffACACAC);
 
 Color primaryColor = Color(0xff4D77FF);
 Color secondaryColor = Color(0xff38ABBE);
