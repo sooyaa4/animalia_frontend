@@ -36,7 +36,7 @@ class _CheckoutTreatmentPageState extends State<CheckoutTreatmentPage> {
       )) {
         cartProvider.carts = [];
         Navigator.pushNamedAndRemoveUntil(
-            context, '/checkout-success', (route) => false);
+            context, '/halaman-bayar', (route) => false);
       }
     }
 

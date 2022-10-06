@@ -36,9 +36,20 @@ class CartProvider with ChangeNotifier {
   }
 
   addQuantity(int id) {
-    _carts[id].jumlah_pesan++;
+    // _carts[id].jumlah_pesan++;
+    if (_carts[id].jumlah_pesan >= _carts[id].product.stok) {
+      _carts[id].jumlah_pesan;
+    } else {
+      _carts[id].jumlah_pesan++;
+    }
+
     notifyListeners();
   }
+
+  // addQuantity(int id) {
+  //   _carts[id].jumlah_pesan++;
+  //   notifyListeners();
+  // }
 
   reduceQuantity(int id) {
     _carts[id].jumlah_pesan--;

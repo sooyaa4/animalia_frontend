@@ -134,7 +134,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
                 ),
                 Icon(
                   Icons.shopping_bag,
-                  color: backgroundColor1,
+                  color: Colors.black,
                 ),
               ],
             ),
@@ -177,7 +177,7 @@ class _TreatmentPageState extends State<TreatmentPage> {
       return Container(
         width: double.infinity,
         margin: EdgeInsets.only(
-          top: 17,
+          top: 255,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.vertical(
@@ -259,14 +259,14 @@ class _TreatmentPageState extends State<TreatmentPage> {
               ),
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: backgroundColor2,
+                color: primaryColor,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Price starts from',
+                    'Harga treatment',
                     style: primaryTextStyle,
                   ),
                   Text(

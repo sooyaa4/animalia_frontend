@@ -1,4 +1,3 @@
-import 'package:animalia_frontend/models/pelanggan_model.dart';
 import 'package:animalia_frontend/models/user_model.dart';
 import 'package:animalia_frontend/providers/auth_provider.dart';
 import 'package:animalia_frontend/providers/fetch_data_provider.dart';
@@ -13,8 +12,9 @@ class EditProfilePage extends StatelessWidget {
     UserModel user = authProvider.user;
     FetchDataProvider fetchDataProvider =
         Provider.of<FetchDataProvider>(context);
-    PelangganModel pelanggan = fetchDataProvider.pelanggan;
+    fetchDataProvider.getDataPelanggan(user);
     print('data pelanggan: ${fetchDataProvider.pelanggan}');
+
     Widget header() {
       return AppBar(
         leading: IconButton(
@@ -58,7 +58,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: pelanggan.nama,
+                hintText: fetchDataProvider.pelanggan.nama,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(

@@ -5,6 +5,7 @@ import 'package:animalia_frontend/pages/checkout_pages.dart';
 import 'package:animalia_frontend/pages/checkout_success.dart';
 import 'package:animalia_frontend/pages/edit_password.dart';
 import 'package:animalia_frontend/pages/edit_profile.dart';
+import 'package:animalia_frontend/pages/halaman_bayar.dart';
 import 'package:animalia_frontend/pages/halaman_wishlist.dart';
 import 'package:animalia_frontend/pages/home/main_page.dart';
 import 'package:animalia_frontend/pages/pembelian.dart';
@@ -101,6 +102,7 @@ class MyApp extends StatelessWidget {
           '/checkout-success': (contex) => CheckoutSuccessPage(),
           '/otp': (context) => OtpPage(),
           '/bayar': (context) => PembayaranCard(),
+          '/halaman-bayar': (context) => HalamanBayar(),
         },
       ),
     );

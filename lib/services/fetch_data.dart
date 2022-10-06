@@ -8,10 +8,7 @@ import 'package:http/http.dart' as http;
 class FetchDataService {
   String baseUrl = 'http://10.0.2.2:8000/api';
 
-  UserModel user;
-
-  Future<PelangganModel> getDataPengguna() async {
-    UserModel user;
+  Future<PelangganModel> getDataPelanggan(UserModel user) async {
     var id = user.id;
     var url = Uri.parse('$baseUrl/fetch/$id');
     var headers = {

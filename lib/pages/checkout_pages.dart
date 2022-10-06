@@ -41,7 +41,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       )) {
         cartProvider.carts = [];
         Navigator.pushNamedAndRemoveUntil(
-            context, '/checkout-success', (route) => false);
+            context, '/halaman-bayar', (route) => false);
       }
     }
 
@@ -320,41 +320,41 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 17, vertical: 1),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 1),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color(0XFFF2F2F2), width: 2),
-              boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)],
-            ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton(
-                iconSize: 36,
-                icon: Icon(
-                  Icons.arrow_drop_down,
-                  color: Color(0xff13A89E),
-                ),
-                isExpanded: true,
-                value: jenisKirimProvider.kirim,
-                onChanged: (value) {
-                  setState(() {
-                    jenisKirimProvider.kirims = value;
-                  });
-                },
-                items: jenisKirimProvider.kirim.map((kirim) {
-                  return DropdownMenuItem(
-                    child: Text(kirim.id.toString()),
-                    value: kirim,
-                  );
-                }).toList(),
-                hint: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text('Pilihan Kurir'),
-                ),
-              ),
-            ),
-          ),
+          // Container(
+          //   margin: EdgeInsets.symmetric(horizontal: 17, vertical: 1),
+          //   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(10),
+          //     border: Border.all(color: Color(0XFFF2F2F2), width: 2),
+          //     boxShadow: [BoxShadow(color: Colors.white, spreadRadius: 1)],
+          //   ),
+          //   child: DropdownButtonHideUnderline(
+          //     child: DropdownButton(
+          //       iconSize: 36,
+          //       icon: Icon(
+          //         Icons.arrow_drop_down,
+          //         color: Color(0xff13A89E),
+          //       ),
+          //       isExpanded: true,
+          //       value: jenisKirimProvider.kirim,
+          //       onChanged: (value) {
+          //         setState(() {
+          //           jenisKirimProvider.kirims = value;
+          //         });
+          //       },
+          //       items: jenisKirimProvider.kirim.map((kirim) {
+          //         return DropdownMenuItem(
+          //           child: Text(kirim.id.toString()),
+          //           value: kirim,
+          //         );
+          //       }).toList(),
+          //       hint: Padding(
+          //         padding: const EdgeInsets.all(10.0),
+          //         child: Text('Pilihan Kurir'),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Container(
             margin: EdgeInsets.only(
               top: defaultMargin,

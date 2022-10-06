@@ -13,9 +13,10 @@ class FetchDataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getDataPengguna() async {
+  Future<void> getDataPelanggan(UserModel user) async {
     try {
-      PelangganModel pelanggan = await FetchDataService().getDataPengguna();
+      PelangganModel pelanggan =
+          await FetchDataService().getDataPelanggan(user);
       _pelanggan = pelanggan;
 
       print(_pelanggan);
